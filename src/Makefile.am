@@ -29,7 +29,7 @@ RCULFHASH = rculfhash.c rculfhash-mm-order.c rculfhash-mm-chunk.c \
 lib_LTLIBRARIES = liburcu-common.la \
 		liburcu.la liburcu-qsbr.la \
 		liburcu-mb.la liburcu-signal.la liburcu-bp.la \
-		liburcu-cds.la
+		liburcu-cds.la liburcu-rseq.la
 
 #
 # liburcu-common contains wait-free queues (needed by call_rcu) as well
@@ -42,6 +42,9 @@ liburcu_la_LIBADD = liburcu-common.la
 
 liburcu_qsbr_la_SOURCES = urcu-qsbr.c urcu-pointer.c $(COMPAT)
 liburcu_qsbr_la_LIBADD = liburcu-common.la
+
+liburcu_rseq_la_SOURCES = urcu-rseq.c urcu-pointer.c $(COMPAT)
+liburcu_rseq_la_LIBADD = liburcu-common.la
 
 liburcu_mb_la_SOURCES = urcu.c urcu-pointer.c $(COMPAT)
 liburcu_mb_la_CFLAGS = -DRCU_MB
