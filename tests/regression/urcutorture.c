@@ -20,6 +20,9 @@
 #ifdef RCU_QSBR
 #include <urcu-qsbr.h>
 #endif
+#ifdef RCU_RSEQ
+#include <urcu-rseq.h>
+#endif
 #ifdef RCU_BP
 #include <urcu-bp.h>
 #endif

@@ -8,6 +8,7 @@ dist_noinst_DATA = regression_tests.in
 
 noinst_PROGRAMS = test_urcu_fork \
 	rcutorture_urcu \
+	rcutorture_urcu_rseq \
 	rcutorture_urcu_signal \
 	rcutorture_urcu_mb \
 	rcutorture_urcu_bp \
@@ -17,6 +18,7 @@ noinst_HEADERS = rcutorture.h
 
 URCU_COMMON_LIB=$(top_builddir)/src/liburcu-common.la
 URCU_LIB=$(top_builddir)/src/liburcu.la
+URCU_RSEQ_LIB=$(top_builddir)/src/liburcu-rseq.la
 URCU_QSBR_LIB=$(top_builddir)/src/liburcu-qsbr.la
 URCU_MB_LIB=$(top_builddir)/src/liburcu-mb.la
 URCU_SIGNAL_LIB=$(top_builddir)/src/liburcu-signal.la
@@ -30,6 +32,10 @@ test_urcu_fork_LDADD = $(URCU_LIB) $(TAP_LIB)
 rcutorture_urcu_SOURCES = urcutorture.c
 rcutorture_urcu_CFLAGS = -DRCU_MEMBARRIER $(AM_CFLAGS)
 rcutorture_urcu_LDADD = $(URCU_LIB) $(TAP_LIB)
+
+rcutorture_urcu_rseq_SOURCES = urcutorture.c
+rcutorture_urcu_rseq_CFLAGS = -DRCU_RSEQ $(AM_CFLAGS)
+rcutorture_urcu_rseq_LDADD = $(URCU_RSEQ_LIB) $(TAP_LIB)
 
 rcutorture_urcu_mb_SOURCES = urcutorture.c
 rcutorture_urcu_mb_CFLAGS = -DRCU_MB $(AM_CFLAGS)
