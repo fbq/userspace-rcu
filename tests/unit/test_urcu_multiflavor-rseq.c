@@ -1,10 +1,9 @@
 /*
- * test_urcu_multiflavor.h
+ * test_urcu_multiflavor-qsbr.c
  *
  * Userspace RCU library - test multiple RCU flavors into one program
  *
  * Copyright February 2012 - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
- * Copyright February 2012 - Lai Jiangshan <laijs@cn.fujitsu.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,10 +20,22 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-extern int test_mf_memb(void);
-extern int test_mf_mb(void);
-extern int test_mf_signal(void);
-extern int test_mf_qsbr(void);
-extern int test_mf_bp(void);
-extern int test_mf_rseq(void);
+#ifndef DYNAMIC_LINK_TEST
+#define _LGPL_SOURCE
+#endif
+#include <urcu-rseq.h>
+#include "test_urcu_multiflavor.h"
 
+#ifdef a
+#error "test"
+#endif
+
+int test_mf_rseq(void)
+{
+	rcu_register_thread();
+	rcu_read_lock();
+	rcu_read_unlock();
+	synchronize_rcu();
+	rcu_unregister_thread();
+	return 0;
+}

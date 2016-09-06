@@ -27,7 +27,7 @@
 
 int main(int argc, char **argv)
 {
-	plan_tests(5);
+	plan_tests(6);
 
 	ok1(!test_mf_memb());
 
@@ -35,6 +35,7 @@ int main(int argc, char **argv)
 	ok1(!test_mf_signal());
 	ok1(!test_mf_qsbr());
 	ok1(!test_mf_bp());
+	ok1(!test_mf_rseq());
 
 	return exit_status();
 }

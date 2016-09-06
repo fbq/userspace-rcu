@@ -13,6 +13,7 @@ noinst_HEADERS = test_urcu_multiflavor.h
 URCU_COMMON_LIB=$(top_builddir)/src/liburcu-common.la
 URCU_LIB=$(top_builddir)/src/liburcu.la
 URCU_QSBR_LIB=$(top_builddir)/src/liburcu-qsbr.la
+URCU_RSEQ_LIB=$(top_builddir)/src/liburcu-rseq.la
 URCU_MB_LIB=$(top_builddir)/src/liburcu-mb.la
 URCU_SIGNAL_LIB=$(top_builddir)/src/liburcu-signal.la
 URCU_BP_LIB=$(top_builddir)/src/liburcu-bp.la
@@ -27,19 +28,21 @@ test_urcu_multiflavor_SOURCES = test_urcu_multiflavor.c \
 	test_urcu_multiflavor-mb.c \
 	test_urcu_multiflavor-signal.c \
 	test_urcu_multiflavor-qsbr.c \
+	test_urcu_multiflavor-rseq.c \
 	test_urcu_multiflavor-bp.c
 test_urcu_multiflavor_LDADD = $(URCU_LIB) $(URCU_MB_LIB) \
-	$(URCU_SIGNAL_LIB) $(URCU_QSBR_LIB) $(URCU_BP_LIB) $(TAP_LIB)
+	$(URCU_SIGNAL_LIB) $(URCU_QSBR_LIB) $(URCU_RSEQ_LIB) $(URCU_BP_LIB) $(TAP_LIB)
 
 test_urcu_multiflavor_dynlink_SOURCES = test_urcu_multiflavor.c \
 	test_urcu_multiflavor-memb.c \
 	test_urcu_multiflavor-mb.c \
 	test_urcu_multiflavor-signal.c \
 	test_urcu_multiflavor-qsbr.c \
+	test_urcu_multiflavor-rseq.c \
 	test_urcu_multiflavor-bp.c
 test_urcu_multiflavor_dynlink_CFLAGS = -DDYNAMIC_LINK_TEST $(AM_CFLAGS)
 test_urcu_multiflavor_dynlink_LDADD = $(URCU_LIB) $(URCU_MB_LIB) \
-	$(URCU_SIGNAL_LIB) $(URCU_QSBR_LIB) $(URCU_BP_LIB) $(TAP_LIB)
+	$(URCU_SIGNAL_LIB) $(URCU_QSBR_LIB) $(URCU_RSEQ_LIB) $(URCU_BP_LIB) $(TAP_LIB)
 
 all-local:
 	@if [ x"$(srcdir)" != x"$(builddir)" ]; then \
